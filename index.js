@@ -1,16 +1,21 @@
 var argv = require('yargs').argv;
 
 function printOutput(output){
-  console.log('--------make-runnable-output--------');
+  if (config.headers) console.log('--------make-runnable-output--------');
   console.log(output);
-  console.log('------------------------------------');
+  if (config.headers) console.log('------------------------------------');
 }
 
 function printError(error){
-  console.error('--------make-runnable-error---------');
+  if (config.headers) console.error('--------make-runnable-error---------');
   console.error(error);
-  console.error('------------------------------------');
+  if (config.headers) console.error('------------------------------------');
 }
+
+config = {};
+module.exports = function setConfig(config){
+  global.config = config;
+};
 
 // if the requiring file is being run directly from the command line
 if (require.main === module.parent) {
